@@ -17,7 +17,6 @@ public class MainClass {
         conArray[3] = new BigCountry("Andorra", 467, 85400, "Andorra la Vella", 22600);
         conArray[4] = new Country("Singapore", 725, 5700000);
         
-        
         //вывод на печать данных массива
         Country.printAll(conArray);
         Country.printPopDens(conArray);

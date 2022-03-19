@@ -7,8 +7,7 @@
 public class BigCountry extends Country {
     private String capname;//название столицы
     private int cappopul;//население столицы, чел.
-    
-    
+   
     //конструктор для государств со столицей
     public BigCountry(String name, int area, int popul, String capname, int cappopul) {
         super.setName(name);
@@ -20,7 +19,6 @@ public class BigCountry extends Country {
         setCappopul(cappopul);
         }
    
-    
     //Геттеры и сеттеры государств со столицей
     public String getCapname() {
         return capname;
@@ -64,8 +62,7 @@ public class BigCountry extends Country {
                 + area/1000 + " тыс. кв. км с населением " + popul/1000
                 + " тыс. человек . Столица - город " + capname +
                 " с населением " + cappopul/1000 + " тыс. человек");
-            
-            
+                  
         }
         else {
             System.out.println(name + " - страна площадью "

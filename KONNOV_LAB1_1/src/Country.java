@@ -14,11 +14,9 @@ public class Country {
     protected int popul;//население страны, чел
     protected double populdensity;//плотность населения в стране, чел/кв. км
     
-
     //конструктор по умолчанию
     public Country() {
     }
-    
     
     //конструктор для государств
     public Country(String name, double area, int popul) {
@@ -27,7 +25,6 @@ public class Country {
         setPopul(popul);
         populdensity = popul/area;
     }
-
  
     //геттеры и сеттеры
     public String getName() {
