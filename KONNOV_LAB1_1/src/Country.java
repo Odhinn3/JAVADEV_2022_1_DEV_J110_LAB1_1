@@ -29,6 +29,7 @@ public class Country {
         populdensity = popul/area;
     }
     
+    
     //конструктор для государств со столицей
     public Country(String name, int area, int popul, String capname, int cappopul) {
         setName(name);
