@@ -9,22 +9,35 @@
  * @author user
  */
 public class Country {
-    protected String name;//название страны
-    protected double area;//площадь страны, кв. км
-    protected int popul;//население страны, чел
-    protected double populdensity;//плотность населения в стране, чел/кв. км
+
+    private String capname;//название столицы
+    private int cappopul;//население столицы, чел.
+    private String name;//название страны
+    private double area;//площадь страны, кв. км
+    private int popul;//население страны, чел
+    private double populdensity;//плотность населения в стране, чел/кв. км
     
     //конструктор по умолчанию
     public Country() {
     }
     
-    //конструктор для государств
+    //конструктор для государств без столицы
     public Country(String name, double area, int popul) {
         setName(name);
         setArea(area);
         setPopul(popul);
         populdensity = popul/area;
     }
+    
+    //конструктор для государств со столицей
+    public Country(String name, int area, int popul, String capname, int cappopul) {
+        setName(name);
+        setArea(area);
+        setPopul(popul);
+        setCapname(capname);
+        setCappopul(cappopul);
+        populdensity = popul/area; 
+        }
  
     //геттеры и сеттеры
     public String getName() {
@@ -32,7 +45,8 @@ public class Country {
     }
 
     public void setName(String name) {
-        if (name.isEmpty())
+        //проверка названия страны на пустоту
+        if (name.isEmpty() || name == null)
             throw new IllegalArgumentException("Название страны не задано!");
         this.name = name;  
     }
@@ -42,6 +56,7 @@ public class Country {
     }
 
     public void setArea(double area) {
+        //проверка площади на корректность значения
         if (area <= 0)
             throw new IllegalArgumentException("Площадь страны не задана или задана некорректно!");
         this.area = area;
@@ -52,10 +67,27 @@ public class Country {
     }
 
     public void setPopul(int popul) {
-         if (popul < 0){
+        //проверка населения страны на корректность
+        if (popul < 0 || popul == 0){
             throw new IllegalArgumentException("Население страны задано некорректно!");
-         }
+        }
         this.popul = popul;
+    }
+    
+     public String getCapname() {
+        return capname;
+    }
+
+    public void setCapname(String capname) {
+        this.capname = capname;
+    }
+
+    public int getCappopul() {
+        return cappopul;
+    }
+
+    public void setCappopul(int cappopul) {
+        this.cappopul = cappopul;
     }
 
    
@@ -67,6 +99,7 @@ public class Country {
     
     //вывод плотности населения на печать
     public void printPopulDensity () {
+        //проверка на наличие населения для расчета
         if (popul > 0) {
             System.out.println("Плотность населения в " + name + " равна " + populdensity + " чел./кв. км");
         }
@@ -77,38 +110,34 @@ public class Country {
     
     //вывод на печать информации о стране
     public void print() {
-        if (popul > 0) {
+        //проверка на наличие столицы, если нет, выводит как город-государство
+        if (capname != null /*& popul > 0*/) {
+            System.out.println(name + " - страна площадью "
+                + area/1000 + " тыс. кв. км с населением " + popul/1000
+                + " тыс. человек . Столица - город " + capname +
+                " с населением " + cappopul/1000 + " тыс. человек");
+            }
+        else
             System.out.println(name + " - город-государство площадью "
                 + area + " кв. км с населением " + popul/1000
                 + " тыс. человек .");
-        }
-        else {
-            System.out.println(name + " - город-государство площадью "
-                + area + " кв. км, население неизвестно");
-        }
     }
+        
+
 
     
     //вывод на печать информации о всех странах в массиве
-    public static void printAll(Country[] conArray){
-        conArray[0].print();
-        conArray[1].print();
-        conArray[2].print();
-        conArray[3].print();
-        conArray[4].print();
+    public static void printAll (Country[] conArray){
+        for (Country c : conArray){
+            c.print();
+        }
     }
     
     
-     //вывод на печать информации о плотности населения в массиве
-     public static void printPopDens(Country[] conArray){
-        conArray[0].printPopulDensity();
-        conArray[1].printPopulDensity();
-        conArray[2].printPopulDensity();
-        conArray[3].printPopulDensity();
-        conArray[4].printPopulDensity();
+    //вывод на печать информации о плотности населения в массиве
+    public static void printPopDens(Country[] conArray){
+        for (Country d : conArray){
+            d.printPopulDensity();
+        }
     }
-
-    
-    
-    
 }
